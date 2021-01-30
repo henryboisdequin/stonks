@@ -1,0 +1,3 @@
+- Access and change values in `${HOME}/.config/stonks/config.toml`
+  - Implement the add, view, list commands
+- Brainstorm and eventually add many more commands utilizing all of `finnhub-rs` features as much as possible

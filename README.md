@@ -1,1 +1,1 @@
-# finnhub-tui
+# stonks
