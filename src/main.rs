@@ -4,17 +4,28 @@ extern crate clap;
 
 mod cli;
 mod client;
+mod parse;
 mod utils;
 
 use clap::AppSettings::ArgRequiredElseHelp;
 use clap::{App, Arg, SubCommand};
 use cli::*;
 use client::create_client;
+use dirs::home_dir;
+use parse::parse_toml_file;
 
 fn main() {
+    let home = home_dir();
+    let path: String = format!(
+        "{:?}/.config/stonks/config.toml",
+        home.expect("Home directory not found.")
+    );
+    let cli = Cli::new(parse_toml_file(path));
+
     let version = "0.1.0";
     let client = create_client();
     println!("{:?}", client);
+
     let app = App::new("stonks")
         .version(version)
         .author("Henry Boisdequin")
@@ -47,9 +58,9 @@ fn main() {
 
     if let Some(cmd) = matches.subcommand_name() {
         match cmd {
-            "list" => list(),
-            "view" => view(),
-            "add" => add(),
+            "list" => cli.list(),
+            "view" => cli.view(),
+            "add" => cli.add(),
             _ => eprintln!("Command not recognized"),
         }
     }

@@ -9,3 +9,6 @@ finnhub-rs = "0.1.0-alpha"
 dotenv = "0.15.0"
 tokio = { version = "1.1", features = ["full"] }
 clap = "2.33.3"
+dirs = "3.0.1"
+toml = "0.5.8"
+serde = {version="1.0.123", features = ["derive"]}
