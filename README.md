@@ -8,7 +8,7 @@ Henry Boisdequin
 Stock CLI tool called stonks which uses the Finnhub API
 
 USAGE:
-    finnhub-cli [SUBCOMMAND]
+    stonks [SUBCOMMAND]
 
 FLAGS:
     -h, --help       Prints help information

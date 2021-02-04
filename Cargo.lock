@@ -250,19 +250,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "finnhub-cli"
-version = "0.1.0"
-dependencies = [
- "clap",
- "dirs",
- "dotenv",
- "finnhub-rs",
- "serde",
- "tokio",
- "toml",
-]
-
-[[package]]
 name = "finnhub-rs"
 version = "0.1.0-alpha"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1087,6 +1074,19 @@ dependencies = [
  "cfg-if",
  "libc",
  "winapi",
+]
+
+[[package]]
+name = "stonks"
+version = "0.1.0"
+dependencies = [
+ "clap",
+ "dirs",
+ "dotenv",
+ "finnhub-rs",
+ "serde",
+ "tokio",
+ "toml",
 ]
 
 [[package]]

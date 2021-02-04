@@ -1,24 +1,36 @@
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
+use std::collections::HashMap;
+use std::fmt::Debug;
 use std::fs;
-use toml::from_str;
+use toml;
 
-#[derive(Serialize, Deserialize)]
+#[derive(Deserialize, Debug, Clone)]
 pub struct Config {
-    pub viewing: Vec<Stocks>,
+    pub symbols: Vec<String>,
 }
 
-#[derive(Serialize, Deserialize)]
-pub struct Stocks {
-    pub symbol: String,
-}
+// #[derive(Deserialize, Debug)]
+// pub struct Watching {
+//     pub symbols: Vec<Stocks>,
+// }
 
-pub fn parse_toml_file(path: String) -> Config {
-    let content: String = fs::read_to_string(path)
-        .expect("Failed to access file.")
-        .parse()
-        .expect("Failed to parse file.");
+// #[derive(Deserialize, Debug)]
+// pub struct Stocks {
+//     pub symbol: String,
+// }
 
-    let toml_config: Config = from_str(&content[..]).expect("Failed to parse file.");
+pub fn parse_toml_file<'a>(path: String) -> Vec<Config> {
+    let content: &str = &fs::read_to_string(path).expect("Failed to access file.");
+    let config_hash_map: HashMap<String, Vec<Config>> = toml::from_str(content).unwrap();
 
-    toml_config
+    // let toml_config: Config = toml::from_str(&content[..]).expect("Failed to parse file.");
+    let toml_config: &[Config] = &config_hash_map["watching"];
+
+    toml_config.to_vec()
+
+    // Config {
+    //     watching: vec![Stocks {
+    //         symbol: "".to_string(),
+    //     }],
+    // }
 }

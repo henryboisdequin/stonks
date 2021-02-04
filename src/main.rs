@@ -1,5 +1,3 @@
-#![feature(or_patterns)]
-
 extern crate clap;
 
 mod cli;
@@ -13,17 +11,15 @@ use cli::*;
 use client::create_client;
 use dirs::home_dir;
 use parse::parse_toml_file;
+use utils::rem_first_and_last_char;
 
 fn main() {
-    let home = home_dir();
-    let path: String = format!(
-        "{:?}/.config/stonks/config.toml",
-        home.expect("Home directory not found.")
-    );
+    let home: String = format!("{:?}", home_dir().unwrap());
+    let path: String = format!("{}/.config/stonks.toml", rem_first_and_last_char(home));
     let cli = Cli::new(parse_toml_file(path));
-
     let version = "0.1.0";
     let client = create_client();
+
     println!("{:?}", client);
 
     let app = App::new("stonks")
