@@ -5,20 +5,16 @@ use stonks::*;
 use clap::AppSettings::ArgRequiredElseHelp;
 use clap::{App, Arg, SubCommand};
 use cli::*;
-use client::create_client;
 use dirs::home_dir;
 use parse::parse_toml_file;
-use ttl_cache;
 use utils::rem_first_and_last_char;
 
-fn main() {
+#[tokio::main]
+async fn main() {
     let home: String = format!("{:?}", home_dir().unwrap());
     let path: String = format!("{}/.config/stonks.toml", rem_first_and_last_char(home));
     let cli = Cli::new(parse_toml_file(path));
     let version = "0.1.0";
-    let client = create_client();
-
-    println!("{:?}", client);
 
     let app = App::new("stonks")
         .version(version)
@@ -53,7 +49,7 @@ fn main() {
     if let Some(cmd) = matches.subcommand_name() {
         match cmd {
             "list" => cli.list(),
-            "view" => cli.view(),
+            "view" => cli.view().await,
             "add" => cli.add(),
             _ => eprintln!("Command not recognized"),
         }

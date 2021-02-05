@@ -383,9 +383,9 @@ dependencies = [
 
 [[package]]
 name = "finnhub-rs"
-version = "0.1.0-alpha"
+version = "0.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "436dbefcdf650e6fd614bd53b8662dadf6e807dfcc5d8b55e01c196c2f67de83"
+checksum = "9ff10d549fd86b1630e36b5752aacdc70495c55747724ad3b5e5638110b5dc84"
 dependencies = [
  "dotenv",
  "exitfailure",

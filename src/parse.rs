@@ -2,9 +2,10 @@ use serde::Deserialize;
 use std::collections::HashMap;
 use std::fmt::Debug;
 use std::fs;
+use std::hash::Hash;
 use toml;
 
-#[derive(Deserialize, Debug, Clone)]
+#[derive(Deserialize, Debug, Clone, Hash)]
 pub struct Config {
     pub symbols: Vec<String>,
 }
