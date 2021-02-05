@@ -12,7 +12,19 @@ clap = "2.33.3"
 dirs = "3.0.1"
 toml = "0.5.8"
 serde = { version= "1.0.123", features = ["derive"] }
+ttl_cache = "0.5.1"
+
+[dev-dependencies]
+criterion = { version = "0.3", features = ["html_reports"] }
 
 [[bin]]
-path = "src/main.rs"
+path = "src/bin/main.rs"
+name = "bin"
+
+[lib]
+path = "src/lib.rs"
 name = "stonks"
+
+[[bench]]
+name = "bench"
+harness = false

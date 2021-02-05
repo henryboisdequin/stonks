@@ -1,9 +1,6 @@
 extern crate clap;
 
-mod cli;
-mod client;
-mod parse;
-mod utils;
+use stonks::*;
 
 use clap::AppSettings::ArgRequiredElseHelp;
 use clap::{App, Arg, SubCommand};
@@ -11,6 +8,7 @@ use cli::*;
 use client::create_client;
 use dirs::home_dir;
 use parse::parse_toml_file;
+use ttl_cache;
 use utils::rem_first_and_last_char;
 
 fn main() {

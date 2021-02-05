@@ -10,12 +10,14 @@ impl Cli {
     }
 
     pub fn list(self) {
-        let symbols = self.config;
+        let config = self.config;
 
         println!("All the symbols of the companies you are watching:");
 
-        for symbol in symbols {
-            println!("{:?}", symbol);
+        for watching in config {
+            for symbol in watching.symbols {
+                println!("- {:?}", symbol);
+            }
         }
     }
 
